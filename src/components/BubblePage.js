@@ -21,6 +21,14 @@ const BubblePage = () => {
   };
 
   const saveEdit = (editColor) => {
+    console.log(editColor);
+    axiosWithAuth().put(`http://localhost:5000/api/colors/${editColor.id}`, editColor)
+      .then(() => {
+        fetchColorService()
+          .then(res => {
+            setColors(res.data);
+          })
+      })
   };
 
   const deleteColor = (colorToDelete) => {
