@@ -11,7 +11,13 @@ const Login = () => {
     <div>
       <h1>Welcome to the Bubble App!</h1>
       <div data-testid="loginForm" className="login-form">
-        <h2>Build login form here</h2>
+        <form>
+          <label for="username">Username</label>
+          <input type="text" id="username" />
+          <label for="password">Password</label>
+          <input type="password" id="password" />
+          <input type="submit" value="submit" />
+        </form>
       </div>
 
       <p id="error" className="error">{error}</p>
