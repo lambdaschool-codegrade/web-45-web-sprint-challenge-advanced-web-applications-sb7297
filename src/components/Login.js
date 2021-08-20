@@ -16,7 +16,7 @@ const Login = () => {
           <input type="text" id="username" />
           <label for="password">Password</label>
           <input type="password" id="password" />
-          <input type="submit" value="submit" />
+          <input type="submit" value="submit" id="submit" />
         </form>
       </div>
 
