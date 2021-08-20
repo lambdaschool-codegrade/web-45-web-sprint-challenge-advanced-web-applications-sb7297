@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 const Login = () => {
@@ -16,14 +17,35 @@ const Login = () => {
     });
   }
 
-  const error = "";
-  //replace with error state
+  const [error, setError] = useState("");
+  
+  const handleSubmit = ev => {
+    ev.preventDefault();
+
+    if (form.username === "" || form.password === "") {
+      setError("Username or Password not valid");
+    } else if (form.username === "Lambda" && form.password === "School") {
+      setError("");
+      axios.post("http://localhost:5000/api/login", {
+        username: form.username,
+        password: form.password
+      })
+        .then(res => {
+          localStorage.setItem('token', res.data.payload);
+        })
+        .catch(err => {
+          console.log("Authentication error: ", err);
+        })
+    } else {
+      setError("");
+    }
+  }
 
   return (
     <div>
       <h1>Welcome to the Bubble App!</h1>
       <div data-testid="loginForm" className="login-form">
-        <form>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="username">Username</label>
           <input name="username" type="text" id="username" onChange={handleChange} value={form.username} />
           <label htmlFor="password">Password</label>
